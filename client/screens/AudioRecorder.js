@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-
+import { Audio } from 'expo-av';
 export default function AudioRecorder() {
 
     async function startRecording(){}
