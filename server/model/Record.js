@@ -13,4 +13,4 @@ const RecordSchema = mongoose.Schema({
 });
 
 const Record = mongoose.model('record', RecordSchema);
-export default Record;
+module.exports = Record;
