@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import AudioPlayer   from './screens/AudioPlayer'
+import AudioRecorder from './screens/AudioRecorder'
 
 export default function App() {
   return (
