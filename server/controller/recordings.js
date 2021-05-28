@@ -16,7 +16,7 @@ exports.recordnings = async (req,res) => {
 exports.add = async (req,res) => {
     const recordnings = req.body
     recordnings.map((rec) => {
-        await Record.create({title: rec.title, uri: rec.uri, date: rec.date})
+        Record.create({title: rec.title, uri: rec.uri, date: rec.date})
     })
     res.status(201).json({success: "Recordning saved!"})
 };
