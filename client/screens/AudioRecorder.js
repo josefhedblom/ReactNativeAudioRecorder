@@ -15,7 +15,7 @@ export default function AudioRecorder() {
       getUserPermisson()
     },[])
 
-    
+
     function alertMessage(msg){
         Alert.alert(
             `${msg[0].method}`,
@@ -74,40 +74,55 @@ export default function AudioRecorder() {
         })
         .catch(error => console.log(error.message)); // Add alert
     }
+
+    function buttonsRecordAndPlay(){
+      return(
+        <TouchableOpacity style={styles.actionButtonsConatiner}>
+          <Pressable style={styles.actionButtonsPressable}>
+            <Text style={styles.actionButtonsText} onPress={recording ?  stopRecording  :  startRecording}>{recording ?  'STOP'  :  'RECORD'}</Text>
+          </Pressable>
+        </TouchableOpacity>
+      )
+    }
+    function actionButtons(func){
+      return(
+        <TouchableOpacity style={styles.actionButtonsConatiner}>
+          <Pressable style={styles.actionButtonsPressable}>
+            <Text style={styles.actionButtonsText} onPress={() => func[0].method.call()}>{`${func[0].action}`}</Text>
+          </Pressable>
+        </TouchableOpacity>
+      )
+    }
     return (
         <View>
             <View style={{flex:0.5}}>
               <Text style={{fontSize:20}}>{timeConverter(timer)}</Text>
             </View>
-            <TouchableOpacity style={{backgroundColor: '#726aa7'}}>
-              <Pressable style={{width: 300}}>
-                <Text style={{color:'white', padding:10, textAlign:'center'}} onPress={recording ?  stopRecording  :  startRecording}>{recording ?  'STOP'  :  'RECORD'}</Text>
-              </Pressable>
-            </TouchableOpacity>
-            <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
-              <Pressable style={{width: 300}}>
-                <Text style={{color:'white', padding:10,textAlign:'center'}} onPress={playRecording}>{'PLAY'}</Text>
-              </Pressable>
-            </TouchableOpacity>
-            <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
-              <Pressable style={{width: 300}}>
-                <Text style={{color:'white', padding:10,textAlign:'center'}} onPress={pauseRecording}>{'STOP'}</Text>
-              </Pressable>
-            </TouchableOpacity>
-            <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
-              <Pressable style={{width: 300}}>
-                <Text style={{color:'white', padding:10,textAlign:'center'}} onPress={saveRecording}>{'SAVE'}</Text>
-              </Pressable>
-            </TouchableOpacity>
+            {buttonsRecordAndPlay()}
+            {actionButtons([{method: () => playRecording(),  action: 'PLAY'}])}
+            {actionButtons([{method: () => pauseRecording(), action: 'STOP'}])}
+            {actionButtons([{method: () => saveRecording(),  action: 'SAVE'}])}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop:100,
-      justifyContent:'center',
-      alignItems:'center'
-    }
+  container: {
+    flex: 1,
+    marginTop:100,
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  actionButtonsConatiner: {
+    backgroundColor: '#726aa7', 
+    marginTop:20
+  },
+  actionButtonsPressable: {
+    width:300
+  },
+  actionButtonsText: {
+    color:'white', 
+    padding:10,
+    textAlign:'center'
+  }
 });
