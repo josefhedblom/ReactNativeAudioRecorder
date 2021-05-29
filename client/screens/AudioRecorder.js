@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, Alert, TouchableOpacity, Pressable, StyleSheet } from 'react-native'
 import { Audio } from 'expo-av';
 import axios from 'axios';
+import { timeConverter } from '../helpers/timeConverter'
 export default function AudioRecorder() {
 
     const [recording,         setRecording]   = useState(false);
@@ -75,6 +76,11 @@ export default function AudioRecorder() {
             <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
               <Pressable style={{width: 300}}>
                 <Text style={{color:'white', padding:10,textAlign:'center'}} onPress={playRecording}>{'PLAY'}</Text>
+              </Pressable>
+            </TouchableOpacity>
+            <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
+              <Pressable style={{width: 300}}>
+                <Text style={{color:'white', padding:10,textAlign:'center'}} onPress={pauseRecording}>{'STOP'}</Text>
               </Pressable>
             </TouchableOpacity>
             <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
