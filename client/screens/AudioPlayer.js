@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import { Audio } from 'expo-av';
 export default function AudioPlayer() {
 
@@ -8,7 +8,11 @@ export default function AudioPlayer() {
     async function pauseRecordning(){}
     return (
         <View>
-            <Text></Text>
+            <FlatList 
+                data={} 
+                renderItem={}  
+                keyExtractor={}
+            />
         </View>
     )
 }
