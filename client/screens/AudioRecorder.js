@@ -54,6 +54,8 @@ export default function AudioRecorder() {
         });
         setSound(sound);
         await sound.playAsync();
+        sound.getStatusAsync()
+        .then((response) => setTimer(response.durationMillis))
     }
     async function pauseRecording(){
         await sound.pauseAsync();
