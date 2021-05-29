@@ -9,6 +9,7 @@ export default function AudioRecorder() {
     const [recordingUri,   setRecordingUri]   = useState();
     const [recordnings,     setRecordnings]   = useState([]);
     const [sound,                 setSound]   = useState()
+    const [timer,                 setTimer]   = useState(0)
 
     function alertMessage(msg){
         Alert.alert(
@@ -68,10 +69,13 @@ export default function AudioRecorder() {
     }
     return (
         <View>
+            <View style={{flex:0.5}}>
+              <Text style={{fontSize:20}}>{timeConverter(timer)}</Text>
+            </View>
             <TouchableOpacity style={{backgroundColor: '#726aa7'}}>
-                <Pressable style={{width: 300}}>
-                  <Text style={{color:'white', padding:10, textAlign:'center'}} onPress={recording ?  stopRecording  :  startRecording}>{recording ?  'STOP'  :  'RECORD'}</Text>
-                </Pressable>
+              <Pressable style={{width: 300}}>
+                <Text style={{color:'white', padding:10, textAlign:'center'}} onPress={recording ?  stopRecording  :  startRecording}>{recording ?  'STOP'  :  'RECORD'}</Text>
+              </Pressable>
             </TouchableOpacity>
             <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
               <Pressable style={{width: 300}}>
