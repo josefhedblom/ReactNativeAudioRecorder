@@ -14,7 +14,14 @@ export default function AudioPlayer() {
     })
 
     showRecordings = ({}) => {}
-    async function playRecording(){}
+    
+    async function playRecording(path){
+        const { sound } = await Audio.Sound.createAsync({
+            uri: path
+        });
+        setSound(sound);
+        await sound.playAsync();
+    }
     async function pauseRecording(){}
     return (
         <View>
