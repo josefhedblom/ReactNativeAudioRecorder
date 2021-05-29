@@ -1,12 +1,12 @@
 const Record = require('../model/Record');
 
-exports.recordnings = async (req,res) => {
-    const recordnings = await Record.find({})
+exports.recordings = async (req,res) => {
+    const recordings = await Record.find({})
     try {
-        if(recordnings){
-            return res.status(200).json({recordnings: recordnings});
+        if(recordings){
+            return res.status(200).json({recordings: recordings});
         } else {
-            return res.status(400).json({error: 'No recordnings exists'})
+            return res.status(400).json({error: 'No recordings exists'})
         }
     } catch (error) {
         res.status(500).json({error: 'Database error'})
@@ -14,10 +14,10 @@ exports.recordnings = async (req,res) => {
 }
 
 exports.add = async (req,res) => {
-    const recordnings = req.body
-    recordnings.map((rec) => {
+    const recordings = req.body
+    recordings.map((rec) => {
         Record.create({title: rec.title, uri: rec.uri, date: rec.date})
     })
-    res.status(201).json({success: "Recordning saved!"})
+    res.status(201).json({success: "Recording saved!"})
 };
 

@@ -4,18 +4,18 @@ import { Audio } from 'expo-av';
 import axios from 'axios';
 export default function AudioPlayer() {
 
-    const [recordnings, setRecordings] = useState([]);
+    const [recordings, setRecordings] = useState([]);
     const [sound,            setSound] = useState();
 
     useEffect(() => {
         axios.get('http://192.168.1.31:6000/')
-        .then(data => setRecordings(data.data.recordnings))
+        .then(data => setRecordings(data.data.recordings))
         .catch(error => console.log(error.message));
     })
 
     showRecordings = ({}) => {}
-    async function playRecordning(){}
-    async function pauseRecordning(){}
+    async function playRecording(){}
+    async function pauseRecording(){}
     return (
         <View>
             <FlatList 

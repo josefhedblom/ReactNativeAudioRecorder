@@ -7,7 +7,7 @@ export default function AudioRecorder() {
 
     const [recording,         setRecording]   = useState(false);
     const [recordingUri,   setRecordingUri]   = useState();
-    const [recordnings,     setRecordnings]   = useState([]);
+    const [recordings,        setRecordings]  = useState([]);
     const [sound,                 setSound]   = useState()
     const [timer,                 setTimer]   = useState(0)
 
@@ -50,7 +50,7 @@ export default function AudioRecorder() {
         await recording.stopAndUnloadAsync();
         setRecordingUri(recording.getURI());
         const title = new Date()
-        setRecordnings(prevState => [...prevState, {title: title, uri:recording.getURI()}] );
+        setRecordings(prevState => [...prevState, {title: title, uri:recording.getURI()}] );
     }
 
     async function playRecording(){
@@ -66,7 +66,7 @@ export default function AudioRecorder() {
         await sound.pauseAsync();
     }
     async function saveRecording(){
-        axios.post('http://192.168.1.31:6000/add',recordnings)
+        axios.post('http://192.168.1.31:6000/add',recordings)
         .then((response) => {
           if(response.status === 200){
             alertMessage([{method: 'Save Recording', message:'Recordning has been saved!'}])

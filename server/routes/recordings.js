@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const RecordningController = require('../controller/recordings');
+const RecordingController = require('../controller/recordings');
 
 
-router.get('/', RecordningController.recordnings);
-router.post('/add', RecordningController.add);
+router.get('/', RecordingController.recordings);
+router.post('/add', RecordingController.add);
 
 module.exports = router;
