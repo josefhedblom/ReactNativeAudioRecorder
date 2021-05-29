@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import { Audio } from 'expo-av';
+import axios from 'axios';
 export default function AudioRecorder() {
 
     const [recording,         setRecording]   = useState(false);
@@ -26,7 +27,7 @@ export default function AudioRecorder() {
             await recording.startAsync();
             setRecording(recording);
         } catch (err) {
-            console.error('Failed to start recording', err);
+            console.error('Failed to start recording', err); // Add alert
         }
     }
     async function stopRecording(){
@@ -44,8 +45,18 @@ export default function AudioRecorder() {
         setSound(sound);
         await sound.playAsync();
     }
-    async function pauseRecording(){}
-    async function saveRecording(){}
+    async function pauseRecording(){
+        await sound.pauseAsync();
+    }
+    async function saveRecording(){
+        axios.post('http://192.168.1.31:6000/add',recordnings)
+        .then(response => {
+          if(response === 200){
+            console.log('Added') // Add alert
+          }
+        })
+        .catch(error => console.log(error.message)); // Add alert
+    }
     return (
         <View>
             <Text></Text>
