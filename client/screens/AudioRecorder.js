@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, Alert, TouchableOpacity, Pressable, StyleSheet } from 'react-native'
 import { Audio } from 'expo-av';
 import axios from 'axios';
@@ -11,6 +11,11 @@ export default function AudioRecorder() {
     const [sound,                 setSound]   = useState()
     const [timer,                 setTimer]   = useState(0)
 
+    useEffect(() => {
+      getUserPermisson()
+    },[])
+
+    
     function alertMessage(msg){
         Alert.alert(
             `${msg[0].method}`,
