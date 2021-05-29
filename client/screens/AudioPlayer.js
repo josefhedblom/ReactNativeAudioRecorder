@@ -14,7 +14,7 @@ export default function AudioPlayer() {
     })
 
     showRecordings = ({}) => {}
-    
+
     async function playRecording(path){
         const { sound } = await Audio.Sound.createAsync({
             uri: path
@@ -22,7 +22,11 @@ export default function AudioPlayer() {
         setSound(sound);
         await sound.playAsync();
     }
-    async function pauseRecording(){}
+    
+    async function pauseRecording(){
+        await sound.pauseAsync();
+    }
+
     return (
         <View>
             <FlatList 
