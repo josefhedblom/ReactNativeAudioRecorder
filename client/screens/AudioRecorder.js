@@ -3,10 +3,10 @@ import { View, Text } from 'react-native'
 import { Audio } from 'expo-av';
 export default function AudioRecorder() {
 
-    const [recording,     setRecording]     = useState(false);
-    const [recordedUri,   setRecordedUri]   = useState();
-    const [recordnings,   setRecordnings]   = useState([]);
-    const [sound,         setSound]         = useState()
+    const [recording,         setRecording]   = useState(false);
+    const [recordingUri,   setRecordingUri]   = useState();
+    const [recordnings,     setRecordnings]   = useState([]);
+    const [sound,                 setSound]   = useState()
 
 
     async function getUserPermisson(){
@@ -29,10 +29,23 @@ export default function AudioRecorder() {
             console.error('Failed to start recording', err);
         }
     }
-    async function stopRecording(){}
-    async function saveRecording(){}
-    async function playRecording(){}
+    async function stopRecording(){
+        setRecording(undefined);
+        await recording.stopAndUnloadAsync();
+        setRecordingUri(recording.getURI());
+        const title = new Date()
+        setRecordnings(prevState => [...prevState, {title: title, uri:recording.getURI()}] );
+    }
+
+    async function playRecording(){
+        const { sound } = await Audio.Sound.createAsync({
+            uri: recordingUri
+        });
+        setSound(sound);
+        await sound.playAsync();
+    }
     async function pauseRecording(){}
+    async function saveRecording(){}
     return (
         <View>
             <Text></Text>
