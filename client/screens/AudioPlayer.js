@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, FlatList } from 'react-native'
+import { ListItem } from "react-native-elements";
 import { Audio } from 'expo-av';
 import axios from 'axios';
 export default function AudioPlayer() {
@@ -22,7 +23,7 @@ export default function AudioPlayer() {
         setSound(sound);
         await sound.playAsync();
     }
-    
+
     async function pauseRecording(){
         await sound.pauseAsync();
     }
