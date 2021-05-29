@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, TouchableOpacity, Pressable, StyleSheet } from 'react-native'
 import { Audio } from 'expo-av';
 import axios from 'axios';
 export default function AudioRecorder() {
@@ -67,7 +67,30 @@ export default function AudioRecorder() {
     }
     return (
         <View>
-            <Text></Text>
+            <TouchableOpacity style={{backgroundColor: '#726aa7'}}>
+                <Pressable style={{width: 300}}>
+                  <Text style={{color:'white', padding:10, textAlign:'center'}} onPress={recording ?  stopRecording  :  startRecording}>{recording ?  'STOP'  :  'RECORD'}</Text>
+                </Pressable>
+            </TouchableOpacity>
+            <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
+              <Pressable style={{width: 300}}>
+                <Text style={{color:'white', padding:10,textAlign:'center'}} onPress={playRecording}>{'PLAY'}</Text>
+              </Pressable>
+            </TouchableOpacity>
+            <TouchableOpacity style={{backgroundColor: '#726aa7', marginTop:20}}>
+              <Pressable style={{width: 300}}>
+                <Text style={{color:'white', padding:10,textAlign:'center'}} onPress={saveRecording}>{'SAVE'}</Text>
+              </Pressable>
+            </TouchableOpacity>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      marginTop:100,
+      justifyContent:'center',
+      alignItems:'center'
+    }
+});
