@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import { Audio } from 'expo-av';
+import axios from 'axios';
 export default function AudioRecorder() {
 
     const [recording,         setRecording]   = useState(false);
@@ -8,7 +9,15 @@ export default function AudioRecorder() {
     const [recordnings,     setRecordnings]   = useState([]);
     const [sound,                 setSound]   = useState()
 
-
+    function alertMessage(msg){
+        Alert.alert(
+            `${msg[0].method}`,
+            `${msg[0].message}`,
+            [
+              { text: "OK", onPress: () => console.log(`${msg[0].method}`) }
+            ]
+        );
+    }
     async function getUserPermisson(){
     const permisson = await Audio.getPermissionsAsync();
         if(permisson.granted){
@@ -26,7 +35,7 @@ export default function AudioRecorder() {
             await recording.startAsync();
             setRecording(recording);
         } catch (err) {
-            console.error('Failed to start recording', err);
+            alertMessage([{method: 'Recording', message:'Failed to start recording', text: err.message}])
         }
     }
     async function stopRecording(){
@@ -44,8 +53,18 @@ export default function AudioRecorder() {
         setSound(sound);
         await sound.playAsync();
     }
-    async function pauseRecording(){}
-    async function saveRecording(){}
+    async function pauseRecording(){
+        await sound.pauseAsync();
+    }
+    async function saveRecording(){
+        axios.post('http://192.168.1.31:6000/add',recordnings)
+        .then((response) => {
+          if(response.status === 200){
+            alertMessage([{method: 'Save Recording', message:'Recordning has been saved!'}])
+          }
+        })
+        .catch(error => console.log(error.message)); // Add alert
+    }
     return (
         <View>
             <Text></Text>
