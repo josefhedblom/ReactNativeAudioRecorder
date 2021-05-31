@@ -16,15 +16,19 @@ export default function AudioPlayer() {
 
     showRecordings = ({ item }) => {
         return(
-            <ListItem bottomDivider onPress={() => playRecording(item.uri)}>
+            <ListItem bottomDivider>
             <ListItem.Content>
-              <ListItem.Title>{item.title} <Icon  name='play-arrow'  type='material-icons'color='#000'size={30}/></ListItem.Title>
+              <ListItem.Title >{item.title} 
+                  <Icon  name='play-arrow' type='material-icons'color='#000'size={30} onPress={() => playRecording(item.uri)}/>
+                  <Icon  name='pause'      type='material-icons'color='#000'size={30} onPress={() => pauseRecording()}/>
+              </ListItem.Title>
               <ListItem.Subtitle>2021-05-27</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );
     }
 
+    /* CHANGE NAME */
     async function playRecording(path){
         const { sound } = await Audio.Sound.createAsync({
             uri: path
@@ -33,6 +37,7 @@ export default function AudioPlayer() {
         await sound.playAsync();
     }
 
+    /* CHANGE NAME */
     async function pauseRecording(){
         await sound.pauseAsync();
     }
