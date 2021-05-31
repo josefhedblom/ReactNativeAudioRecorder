@@ -10,7 +10,7 @@ import HeaderBar from './screens/HeaderBar';
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
+    <React.Fragment>
       <HeaderBar />
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Record">
@@ -18,7 +18,7 @@ export default function App() {
           <Tab.Screen name="Playlist" component={AudioPlayer} />
         </Tab.Navigator>
       </NavigationContainer>
-    </View>
+    </React.Fragment>
   );
 }
 
