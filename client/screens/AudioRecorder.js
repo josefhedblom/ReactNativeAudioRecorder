@@ -94,7 +94,7 @@ export default function AudioRecorder() {
       )
     }
     return (
-        <View>
+        <View style={styles.container}>
             <View style={{flex:0.5}}>
               <Text style={{fontSize:20}}>{timeConverter(timer)}</Text>
             </View>
