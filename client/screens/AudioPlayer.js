@@ -11,7 +11,7 @@ export default function AudioPlayer() {
 
     useEffect(() => {
         axios.get('http://192.168.1.31:6000/')
-        .then(data   => setRecordings(data.data.recordings))
+        .then((data)   => setRecordings(data.data.recordings))
         .catch(error => console.log(error.message));
     })
 
@@ -24,7 +24,7 @@ export default function AudioPlayer() {
                   <Icon  name='pause'      type='material-icons'color='#000'size={30} onPress={() => pauseSavedRecording()}/>
                   <Icon  name='clear'      type='material-icons'color='#000'size={30} onPress={() => deleteRecording(item)}/>
               </ListItem.Title>
-              <ListItem.Subtitle>2021-05-27</ListItem.Subtitle> {/* ADD REAL DATE */}
+              <ListItem.Subtitle>2021-05-31</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );
