@@ -20,8 +20,9 @@ export default function AudioPlayer() {
             <ListItem bottomDivider>
             <ListItem.Content>
               <ListItem.Title >{item.title} 
-                  <Icon  name='play-arrow' type='material-icons'color='#000'size={30} onPress={() => playRecording(item.uri)}/>
+                  <Icon  name='play-arrow' type='material-icons'color='#000'size={30} onPress={() => playRecording(item)}/>
                   <Icon  name='pause'      type='material-icons'color='#000'size={30} onPress={() => pauseRecording()}/>
+                  <Icon  name='clear'      type='material-icons'color='#000'size={30} onPress={() => deleteRecording(item)}/>
               </ListItem.Title>
               <ListItem.Subtitle>2021-05-27</ListItem.Subtitle>
             </ListItem.Content>
@@ -30,9 +31,9 @@ export default function AudioPlayer() {
     }
 
     /* CHANGE NAME */
-    async function playRecording(path){
+    async function playRecording(item){
         const { sound } = await Audio.Sound.createAsync({
-            uri: path
+            uri: item.uri
         });
         setSound(sound);
         await sound.playAsync();
