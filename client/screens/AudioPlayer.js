@@ -43,6 +43,18 @@ export default function AudioPlayer() {
         await sound.pauseAsync();
     }
 
+    async function deleteRecording(item){
+        try {
+            await FileSystem.deleteAsync(
+              item.uri
+            );
+            axios.delete(`http://192.168.1.31:6000/${item._id}`)
+            .then((response) => console.log(response.status))
+          } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <View>
             <FlatList 
