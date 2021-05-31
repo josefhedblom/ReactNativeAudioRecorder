@@ -10,6 +10,7 @@ export default function AudioRecorder() {
     const [recordings,        setRecordings]  = useState([]);
     const [sound,                 setSound]   = useState()
     const [timer,                 setTimer]   = useState(0)
+    const count                               = 0;
 
 
 
@@ -45,8 +46,9 @@ export default function AudioRecorder() {
         setRecording(undefined);
         await recording.stopAndUnloadAsync();
         setRecordingUri(recording.getURI());
-        const title = new Date()
-        setRecordings(prevState => [...prevState, {title: title, uri:recording.getURI()}] );
+        const date = new Date().toLocaleString()
+        const title = `Ny inspelning ${count + 1}`
+        setRecordings(prevState => [...prevState, {title: title, date: date, uri:recording.getURI()}] );
     }
 
     async function playRecording(){
