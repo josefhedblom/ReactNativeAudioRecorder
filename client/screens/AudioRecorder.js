@@ -10,7 +10,7 @@ export default function AudioRecorder() {
     const [recordings,        setRecordings]  = useState([]);
     const [sound,                 setSound]   = useState()
     const [timer,                 setTimer]   = useState(0)
-    const count                               = 0;
+    const [count,                 setCount]   = useState(1);
 
 
 
@@ -47,7 +47,8 @@ export default function AudioRecorder() {
         await recording.stopAndUnloadAsync();
         setRecordingUri(recording.getURI());
         const date = new Date().toLocaleString()
-        const title = `Ny inspelning ${count + 1}`
+        setCount(count + 1)
+        const title = `Ny inspelning ${count}`
         setRecordings(prevState => [...prevState, {title: title, date: date, uri:recording.getURI()}] );
     }
 
@@ -69,6 +70,7 @@ export default function AudioRecorder() {
           if(response.status === 201){
             alertMessage([{method: 'Save Recording', message:'Recordning has been saved!'}])
           }
+          setRecordings([]);
         })
         .catch(error => console.log(error.message)); // Add alert
     }
