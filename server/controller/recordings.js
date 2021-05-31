@@ -21,3 +21,8 @@ exports.add = async (req,res) => {
     res.status(201).json({success: "Recording saved!"})
 };
 
+exports.delete = async (req,res) => {
+    const id = req.params.id;
+    await Record.deleteOne({_id: id});
+    res.status(200).json({succsse: `Recording ${id} has been deleted`})
+}
