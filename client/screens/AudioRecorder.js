@@ -11,9 +11,7 @@ export default function AudioRecorder() {
     const [sound,                 setSound]   = useState()
     const [timer,                 setTimer]   = useState(0)
 
-    useEffect(() => {
-      getUserPermisson()
-    },[])
+
 
 
     function alertMessage(msg){
@@ -25,24 +23,22 @@ export default function AudioRecorder() {
             ]
         );
     }
-    async function getUserPermisson(){
-    const permisson = await Audio.getPermissionsAsync();
-        if(permisson.granted){
+
+    async function startRecording(){
+        try {
+          const permisson = await Audio.getPermissionsAsync();
+          await Audio.getPermissionsAsync();
           await Audio.requestPermissionsAsync();
           await Audio.setAudioModeAsync({
             allowsRecordingIOS: true,
             playsInSilentModeIOS: true,
-          }); 
-        }
-    }
-    async function startRecording(){
-        try {
+          });
             const recording = new Audio.Recording();
             await recording.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
             await recording.startAsync();
             setRecording(recording);
         } catch (err) {
-            alertMessage([{method: 'Recording', message:'Failed to start recording', text: err.message}])
+            alertMessage([{method: 'Recording', message:'Failed to start recording'}])
         }
     }
     async function stopRecording(){
@@ -68,7 +64,7 @@ export default function AudioRecorder() {
     async function saveRecording(){
         axios.post('http://192.168.1.31:6000/add',recordings)
         .then((response) => {
-          if(response.status === 200){
+          if(response.status === 201){
             alertMessage([{method: 'Save Recording', message:'Recordning has been saved!'}])
           }
         })
