@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, Alert } from 'react-native'
 import { ListItem, Icon } from "react-native-elements";
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system';
@@ -30,6 +30,16 @@ export default function AudioPlayer() {
         );
     }
 
+    function alertMessage(msg){
+        Alert.alert(
+            `${msg[0].method}`,
+            `${msg[0].message}`,
+            [
+              { text: "OK", onPress: () => console.log(`${msg[0].method}`) }
+            ]
+        );
+      }
+
     async function playSavedRecording(item){
         const { sound } = await Audio.Sound.createAsync({
             uri: item.uri
@@ -49,6 +59,7 @@ export default function AudioPlayer() {
             );
             axios.delete(`http://192.168.1.31:6000/${item._id}`)
             .then((response) => console.log(response.status))
+            alertMessage([{method: 'Delete Recording', message:'Recording has been deleted!'}])
           } catch (error) {
             console.log(error);
         }
