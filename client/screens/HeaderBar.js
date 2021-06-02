@@ -7,13 +7,10 @@ export default function HeaderBar() {
             <Header
                 barStyle="default"
                 centerComponent={{
-                  text: "MY TITLE",
+                  text: "REACT NATIVE RECORDER",
                   style: { color: "#fff" }
                 }}
                 containerStyle={{ width: '100%' }}
-                leftComponent={{ icon: "menu", color: "#fff" }}
-                placement="center"
-                rightComponent={{ icon: "home", color: "#fff" }}
                 />
         </View>
     )
