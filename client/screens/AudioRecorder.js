@@ -67,7 +67,7 @@ export default function AudioRecorder() {
           }
           setRecordings([]);
         })
-        .catch(error => console.log(error.message)); // Add alert
+        .catch(error => {alertMessage([{method: 'Save Recording', message:'Failed to save recording'}])});
     }
 
     function buttonsRecordAndPlay(){
