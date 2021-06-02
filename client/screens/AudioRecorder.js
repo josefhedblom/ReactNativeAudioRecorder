@@ -43,7 +43,7 @@ export default function AudioRecorder() {
         setRecording(undefined);
         await recording.stopAndUnloadAsync();
         setRecordingUri(recording.getURI());
-        const date = new Date().toLocaleString()
+        const date = new Date().toISOString().slice(0, 10)
         setCount(count + 1)
         const title = `Ny inspelning ${count}`
         setRecordings(prevState => [...prevState, {title: title, date: date, uri:recording.getURI()}] );
