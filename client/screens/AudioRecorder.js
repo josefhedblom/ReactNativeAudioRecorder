@@ -1,12 +1,21 @@
-import React, { useState } from 'react'
-import { View, Text, Alert, TouchableOpacity, Pressable, StyleSheet } from 'react-native'
-import { Audio } from 'expo-av';
-import axios from 'axios';
+import React               from 'react'
+import { useState }        from 'react'
+import { Audio }           from 'expo-av';
+import axios               from 'axios';
+import { 
+  View, 
+  Text, 
+  Alert, 
+  TouchableOpacity, 
+  Pressable, 
+  StyleSheet 
+}                          from 'react-native'
+
 export default function AudioRecorder() {
 
     const [recording,         setRecording]   = useState(false);
     const [recordingUri,   setRecordingUri]   = useState();
-    const [recordings,        setRecordings]  = useState([]);
+    const [recordings,       setRecordings]   = useState([]);
     const [sound,                 setSound]   = useState()
     const [count,                 setCount]   = useState(1);
 
