@@ -63,7 +63,7 @@ export default function AudioRecorder() {
         axios.post('http://192.168.1.31:6000/add',recordings)
         .then((response) => {
           if(response.status === 201){
-            alertMessage([{method: 'Save Recording', message:'Recordning has been saved!'}])
+            alertMessage([{method: 'Save Recording', message:'Recording has been saved!'}])
           }
           setRecordings([]);
         })

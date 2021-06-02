@@ -18,11 +18,11 @@ export default function AudioPlayer() {
     showRecordings = ({ item }) => {
         return(
             <ListItem bottomDivider>
-            <ListItem.Content>
-              <ListItem.Title >{item.title} 
-                  <Icon  name='play-arrow' type='material-icons'color='#000'size={30} onPress={() => playSavedRecording(item)}/>
-                  <Icon  name='pause'      type='material-icons'color='#000'size={30} onPress={() => pauseSavedRecording()}/>
-                  <Icon  name='clear'      type='material-icons'color='#000'size={30} onPress={() => deleteRecording(item)}/>
+            <ListItem.Content >
+              <ListItem.Title>{item.title} 
+                  <Icon  name='play-arrow' type='material-icons'color='#000'size={25} onPress={() => playSavedRecording(item)}/>
+                  <Icon  name='stop'      type='material-icons'color='#000'size={25} onPress={() => pauseSavedRecording()}/>
+                  <Icon  name='clear'      type='material-icons'color='#000'size={25} onPress={() => deleteRecording(item)}/>
               </ListItem.Title>
               <ListItem.Subtitle>2021-05-31</ListItem.Subtitle>
             </ListItem.Content>
