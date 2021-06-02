@@ -16,7 +16,6 @@ export default function AudioRecorder() {
     const [recording,         setRecording]   = useState(false);
     const [recordingUri,   setRecordingUri]   = useState();
     const [recordings,       setRecordings]   = useState([]);
-    const [sound,                 setSound]   = useState()
     const [count,                 setCount]   = useState(1);
 
 
@@ -59,16 +58,23 @@ export default function AudioRecorder() {
     }
 
     async function playRecording(){
+      try {
         const { sound } = await Audio.Sound.createAsync({
-            uri: recordingUri
-        });
-        setSound(sound);
+          uri: recordingUri
+      });
         await sound.playAsync();
+      } catch (error) {
+        alertMessage([{method: 'Play Recording', message:'No recording to be played'}])
+      }
+        
     }
     async function pauseRecording(){
         await sound.pauseAsync();
     }
     async function saveRecording(){
+        if(recordings.length === 0){
+          return alertMessage([{method: 'Save Recording', message:'No Recording to be saved!'}])
+        }
         axios.post('http://192.168.1.31:6000/add',recordings)
         .then((response) => {
           if(response.status === 201){
