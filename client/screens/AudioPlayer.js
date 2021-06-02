@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, FlatList, Alert } from 'react-native'
-import { ListItem, Icon } from "react-native-elements";
-import { Audio } from 'expo-av';
-import * as FileSystem from 'expo-file-system';
-import axios from 'axios';
+import React                     from 'react'
+import { useState, useEffect }   from 'react'
+import { View, FlatList, Alert } from 'react-native'
+import { ListItem, Icon }        from "react-native-elements";
+import { Audio }                 from 'expo-av';
+import * as FileSystem           from 'expo-file-system';
+import axios                     from 'axios';
+
 export default function AudioPlayer() {
 
     const [recordings, setRecordings] = useState([]);
@@ -21,7 +23,7 @@ export default function AudioPlayer() {
             <ListItem.Content >
               <ListItem.Title>{item.title} 
                   <Icon  name='play-arrow' type='material-icons'color='#000'size={25} onPress={() => playSavedRecording(item)}/>
-                  <Icon  name='stop'      type='material-icons'color='#000'size={25} onPress={() => pauseSavedRecording()}/>
+                  <Icon  name='stop'       type='material-icons'color='#000'size={25} onPress={() => pauseSavedRecording()}/>
                   <Icon  name='clear'      type='material-icons'color='#000'size={25} onPress={() => deleteRecording(item)}/>
               </ListItem.Title>
               <ListItem.Subtitle>{item.date}</ListItem.Subtitle>

@@ -1,6 +1,7 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import { Header } from "react-native-elements";
+import React        from 'react'
+import { View }     from 'react-native'
+import { Header }   from "react-native-elements";
+
 export default function HeaderBar() {
     return (
         <View>
