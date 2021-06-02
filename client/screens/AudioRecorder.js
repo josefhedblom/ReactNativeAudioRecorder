@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text, Alert, TouchableOpacity, Pressable, StyleSheet } from 'react-native'
 import { Audio } from 'expo-av';
 import axios from 'axios';
-import { timeConverter } from '../helpers/timeConverter'
 export default function AudioRecorder() {
 
     const [recording,         setRecording]   = useState(false);
     const [recordingUri,   setRecordingUri]   = useState();
     const [recordings,        setRecordings]  = useState([]);
     const [sound,                 setSound]   = useState()
-    const [timer,                 setTimer]   = useState(0)
     const [count,                 setCount]   = useState(1);
 
 
@@ -27,7 +25,6 @@ export default function AudioRecorder() {
 
     async function startRecording(){
         try {
-          const permisson = await Audio.getPermissionsAsync();
           await Audio.getPermissionsAsync();
           await Audio.requestPermissionsAsync();
           await Audio.setAudioModeAsync({
@@ -58,8 +55,6 @@ export default function AudioRecorder() {
         });
         setSound(sound);
         await sound.playAsync();
-        sound.getStatusAsync()
-        .then((response) => setTimer(response.durationMillis))
     }
     async function pauseRecording(){
         await sound.pauseAsync();
@@ -95,9 +90,6 @@ export default function AudioRecorder() {
     }
     return (
         <View style={styles.container}>
-            <View style={{flex:0.5}}>
-              <Text style={{fontSize:20}}>{timeConverter(timer)}</Text>
-            </View>
             {buttonsRecordAndPlay()}
             {actionButtons([{method: () => playRecording(),  action: 'PLAY'}])}
             {actionButtons([{method: () => pauseRecording(), action: 'STOP'}])}
