@@ -24,7 +24,7 @@ export default function AudioPlayer() {
                   <Icon  name='stop'      type='material-icons'color='#000'size={25} onPress={() => pauseSavedRecording()}/>
                   <Icon  name='clear'      type='material-icons'color='#000'size={25} onPress={() => deleteRecording(item)}/>
               </ListItem.Title>
-              <ListItem.Subtitle>2021-05-31</ListItem.Subtitle>
+              <ListItem.Subtitle>{item.date}</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );
